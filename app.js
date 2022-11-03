@@ -5,7 +5,6 @@ function fetchWeather(city) {
       return res.json();
     })
     .then((data) => {
-      console.log(data);
       const { name } = data;
       const { icon, description } = data.weather[0];
       const { temp, humidity } = data.main;
@@ -26,4 +25,10 @@ function fetchWeather(city) {
 
 document.querySelector(".btn").addEventListener("click", () => {
   fetchWeather(document.querySelector(".search__bar").value);
+});
+
+document.querySelector(".search__bar").addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    fetchWeather(document.querySelector(".search__bar").value);
+  }
 });
